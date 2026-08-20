@@ -2,8 +2,13 @@ import { api } from "@/lib/api_brasil";
 import { Corretora } from "@/types/corretora";
 export async function getCorretoras(): Promise<Corretora[]> {
   try {
-    const { data } = await api.get<Corretora[]>("/");
-    return data;
+    const { data } = await api.get<Corretora[]>("");
+
+    const corretorasLista = Array.from(
+      new Map(data.map((item) => [item.cnpj, item])).values(),
+    );
+
+    return corretorasLista;
   } catch (error) {
     throw new Error("Erro ao buscar lista de corretoras: " + error);
   }
