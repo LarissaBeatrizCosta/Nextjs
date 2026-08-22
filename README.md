@@ -5,7 +5,7 @@ Além das tecnologias mencionadas acima, conta com **Material UI (MUI)** e geren
 
 ## Tecnologias Utilizadas
 
-- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Framework**: [Next.js](https://nextjs.org/)
 - **Linguagem**: [TypeScript](https://www.typescriptlang.org/)
 - **Componentes e Estilização**: [Material UI (MUI)](https://mui.com/)
 - **Gerenciamento de Estado**: [Jotai](https://jotai.org/)
