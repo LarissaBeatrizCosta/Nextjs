@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Nesse projeto desenvolvido com **Next.js** e **TypeScript** será encontrada uma interface para listagem, busca e visualização de detalhes sobre corretoras.
 
-## Getting Started
+Além das tecnologias mencionadas acima, conta com **Material UI (MUI)** e gerenciamento de estado com **Jotai**, camada de serviços com **Axios** e integração com a [BrasilAPI](https://brasilapi.com.br/)
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tecnologias Utilizadas
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Linguagem**: [TypeScript](https://www.typescriptlang.org/)
+- **Componentes e Estilização**: [Material UI (MUI)](https://mui.com/)
+- **Gerenciamento de Estado**: [Jotai](https://jotai.org/)
+- **Requisições HTTP**: [Axios](https://axios-http.com/)
+
+## Estrutura do Projeto
+
+A estrutura de pastas foi organizada para separação de responsabilidades
+
+```text
+├── app/                # Layouts e páginas.
+├── atoms/              # Estados globais gerenciados pela biblioteca Jotai.
+├── components/         # Componentes de UI.
+├── lib/                # Instância do Axios (baseURL da Brasil API)
+├── providers/          # Contexto da aplicação.
+├── services/           # Chamadas de API.
+├── styles/             # Estilos da aplicação.
+├── types/              # Definições de tipos e interfaces.
+├── utils/              # Utilitários genéricos.
 ```
+## Pré-requisitos
+- Node.js 20.9.0 ou superior
+- npm (ou yarn/pnpm/bun)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Instalação e execução
+- **Clone o repositório:**
+   git clone https://github.com/LarissaBeatrizCosta/Nextjs.git
+   cd Nextjs
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Instale as dependências:**
+   npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Variável de ambiente:**
+Por padrão, o projeto já consome a API pública da CVM na Brasil API, mas você pode sobrescrever a URL base criando um arquivo .env.local:
+   NEXT_PUBLIC_API_URL=https://brasilapi.com.br/api/cvm/corretoras/v1
 
-## Learn More
+- **Rode o servidor de desenvolvimento:**
+   npm run dev
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Acesse http://localhost:3000 no navegador**
