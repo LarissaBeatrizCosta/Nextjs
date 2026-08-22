@@ -14,7 +14,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className} style={{ backgroundColor: "#0d1117" }}>
+      <body className={inter.className} style={{ backgroundColor: "default" }}>
         <Providers>{children}</Providers>
       </body>
     </html>

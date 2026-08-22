@@ -2,20 +2,15 @@
 import { Card, CardActionArea, Box, Typography } from "@mui/material";
 import Link from "next/link";
 import { Corretora } from "@/types/corretora";
+import { formatarCNPJ } from "@/utils/format/cnpj";
+import { formatarValorMoeda } from "@/utils/format/moeda";
 
 interface Props {
   corretora: Corretora;
 }
 
-function formatarValorMoeda(value: number): string {
-  return value.toLocaleString("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  });
-}
-
 export function CorretoraCard({ corretora }: Props) {
-  const cnpjFormatado = corretora.cnpj.replace(/\D/g, "");
+  const cnpjFormatado = formatarCNPJ(corretora.cnpj);
 
   return (
     <Card
@@ -23,17 +18,17 @@ export function CorretoraCard({ corretora }: Props) {
       sx={{
         width: "100%",
         borderRadius: "12px",
-        border: "1px solid #21262d",
+        border: "1px solid rgba(0, 8, 38, 0.15)",
         transition: "all 0.2s ease",
         "&:hover": {
-          borderColor: "#3fb950",
-          backgroundColor: "#1a2130",
+          borderColor: "primary.main",
+          backgroundColor: "background.default",
         },
       }}
     >
       <CardActionArea
         component={Link}
-        href={`/corretoras/${cnpjFormatado}`}
+        href={`/corretoras/${corretora.cnpj}`}
         sx={{
           height: "100%",
           display: "flex",
@@ -56,23 +51,23 @@ export function CorretoraCard({ corretora }: Props) {
             variant="body1"
             sx={{
               fontWeight: 600,
-              color: "#e6edf3",
+              color: "primary.main",
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
             }}
           >
-            {corretora.nome_comercial}
+            {corretora.nome_comercial || "NOME INDEFINIDO"}
           </Typography>
           <Typography
             variant="caption"
             sx={{
-              color: "#8b949e",
+              color: "rgba(0, 8, 38, 0.6)",
               fontFamily: "monospace",
               letterSpacing: "0.5px",
             }}
           >
-            {corretora.cnpj}
+            {cnpjFormatado ?? "CNPJ INVÁLIDO"}
           </Typography>
         </Box>
 
@@ -88,9 +83,10 @@ export function CorretoraCard({ corretora }: Props) {
         >
           <Typography
             variant="body2"
-            sx={{ color: "#3fb950", fontFamily: "monospace", fontWeight: 500 }}
+            sx={{ color: "text.primary", fontFamily: "monospace", fontWeight: 500 }}
           >
-            {formatarValorMoeda(Number(corretora.valor_patrimonio_liquido))}
+            {formatarValorMoeda(Number(corretora.valor_patrimonio_liquido)) ??
+              "VALOR INDEFINIDO"}
           </Typography>
           <Box
             sx={{
@@ -98,15 +94,15 @@ export function CorretoraCard({ corretora }: Props) {
               px: 1,
               py: 0.25,
               borderRadius: "999px",
-              backgroundColor: "rgba(63, 185, 80, 0.1)",
-              color: "#3fb950",
-              border: "1px solid rgba(63, 185, 80, 0.2)",
+              backgroundColor: "rgba(232, 0, 112, 0.1)",
+              color: "primary.main",
+              border: "1px solid rgba(232, 0, 112, 0.2)",
               fontFamily: "monospace",
             }}
           >
             {corretora.status === "EM FUNCIONAMENTO NORMAL"
-              ? "Ativo"
-              : corretora.status}
+              ? "ATIVA"
+              : (corretora.status ?? "STATUS INDEFINIDO")}
           </Box>
         </Box>
       </CardActionArea>

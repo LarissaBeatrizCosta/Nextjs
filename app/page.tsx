@@ -1,7 +1,9 @@
 import { Suspense } from "react";
 import { Container, Box, Typography, CircularProgress } from "@mui/material";
-import { SearchBar } from "@/components/buscaCorretora";
-import { CorretorasList } from "@/components/listaCorretoras";
+import { SearchBar } from "@/components/searchBar";
+import { CorretorasList } from "@/components/listCorretora";
+
+export const revalidate = 600;
 
 export default function Home() {
   return (
@@ -11,7 +13,7 @@ export default function Home() {
           variant="caption"
           sx={{
             display: "block",
-            color: "#3fb950",
+            color: "primary.main",
             fontFamily: "monospace",
             letterSpacing: "0.15em",
             textTransform: "uppercase",
@@ -22,11 +24,11 @@ export default function Home() {
         </Typography>
         <Typography
           variant="h4"
-          sx={{ color: "#e6edf3", fontWeight: 600, mb: 1 }}
+          sx={{ color: "text.primary", fontWeight: 600, mb: 1 }}
         >
           Instituições
         </Typography>
-        <Typography variant="body2" sx={{ color: "#8b949e" }}>
+        <Typography variant="body2" sx={{ color: "rgba(0, 8, 38, 0.6)" }}>
           Clique na corretora escolhida para acessar os detalhes.
         </Typography>
       </Box>
@@ -38,7 +40,7 @@ export default function Home() {
       <Suspense
         fallback={
           <Box sx={{ display: "flex", justifyContent: "center", py: 8 }}>
-            <CircularProgress sx={{ color: "#3fb950" }} />
+            <CircularProgress sx={{ color: "primary.main" }} />
           </Box>
         }
       >
