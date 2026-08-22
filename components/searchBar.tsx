@@ -1,9 +1,11 @@
-"use client";
-import { TextField, InputAdornment } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import { useAtom } from "jotai";
-import { buscaNomeComercialAtom } from "@/atoms/corretora";
+'use client';
+import SearchIcon from '@mui/icons-material/Search';
+import { TextField, InputAdornment } from '@mui/material';
+import { useAtom } from 'jotai';
 
+import { buscaNomeComercialAtom } from '@/atoms/corretora';
+
+/**Componente de busca pelo nome comercial da corretora.*/
 export function SearchBar() {
   const [buscaNomeComercial, setBuscaNomeComercial] = useAtom(
     buscaNomeComercialAtom,

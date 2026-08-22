@@ -1,6 +1,7 @@
+/** Interface para representar uma corretora. */
 export interface Corretora {
   cnpj: string;
-  type: "CORRETORAS";
+  type: 'CORRETORAS';
   nome_social: string;
   nome_comercial: string;
   status: string;

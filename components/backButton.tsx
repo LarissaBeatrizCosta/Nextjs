@@ -1,8 +1,8 @@
-"use client";
+'use client';
+import { Button } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
-import { Button } from "@mui/material";
-import { useRouter } from "next/navigation";
-
+/** Componente de botão de voltar */
 export function BackButton() {
   const router = useRouter();
 

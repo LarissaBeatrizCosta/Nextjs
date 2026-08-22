@@ -1,23 +1,25 @@
-"use client";
+'use client';
 
-import { Corretora } from "@/types/corretora";
-import { formatarCep } from "@/utils/format/cep";
-import { formatarCNPJ } from "@/utils/format/cnpj";
-import { formatarData } from "@/utils/format/data";
-import { formatarValorMoeda } from "@/utils/format/moeda";
-import { formatarTelefone } from "@/utils/format/telefone";
-import { Box, Chip, Divider, Grid, Typography } from "@mui/material";
+import { Box, Chip, Divider, Grid, Typography } from '@mui/material';
+
+import { Corretora } from '@/types/corretora';
+import { formatarCep } from '@/utils/format/cep';
+import { formatarCNPJ } from '@/utils/format/cnpj';
+import { formatarData } from '@/utils/format/data';
+import { formatarValorMoeda } from '@/utils/format/moeda';
+import { formatarTelefone } from '@/utils/format/telefone';
 
 interface Props {
   corretora: Corretora;
 }
 
+/** Componente para exibir os detalhes da corretora com todos os seus atributos */
 function RowValue({ label, value }: { label: string; value?: string }) {
   return (
     <Box sx={{ mb: 2.5 }}>
       <Typography
         variant="caption"
-        sx={{ display: "block", mb: 0.5, textTransform: "uppercase" }}
+        sx={{ display: 'block', mb: 0.5, textTransform: 'uppercase' }}
       >
         {label}
       </Typography>
@@ -30,11 +32,11 @@ function RowValue({ label, value }: { label: string; value?: string }) {
 
 function SectionTitle({ title }: { title: string }) {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", mb: 2, gap: 2 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2 }}>
       <Typography
         variant="h6"
         color="primary"
-        sx={{ fontWeight: "bold", whiteSpace: "nowrap" }}
+        sx={{ fontWeight: 'bold', whiteSpace: 'nowrap' }}
       >
         {title}
       </Typography>
@@ -45,41 +47,43 @@ function SectionTitle({ title }: { title: string }) {
 
 export function CardDetailsCorretora({ corretora }: Props) {
   return (
-    <Box sx={{ maxWidth: 800, mx: "auto", py: 2 }}>
+    <Box sx={{ maxWidth: 800, mx: 'auto', py: 2 }}>
       <Box sx={{ mb: 4 }}>
-        <Box sx={{ display: "flex", gap: 1, mb: 2, flexWrap: "wrap" }}>
+        <Box sx={{ display: 'flex', gap: 1, mb: 2, flexWrap: 'wrap' }}>
           <Chip
-            label={corretora.type || "CORRETORA"}
+            label={corretora.type || 'CORRETORA'}
             size="small"
             variant="outlined"
             color="primary"
           />
           <Chip
-            label={corretora.status || "INDEFINIDO"}
+            label= {corretora.status === 'EM FUNCIONAMENTO NORMAL'
+              ? 'ATIVA'
+              : (corretora.status || 'STATUS INDEFINIDO')}
             size="small"
             color="primary"
           />
         </Box>
-        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-          {corretora.nome_comercial || "NOME INDEFINIDO"}
+        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+          {corretora.nome_comercial || 'NOME INDEFINIDO'}
         </Typography>
-        <Typography variant="subtitle1" sx={{ color: "text.primary" }}>
-          {corretora.nome_social || "NOME SOCIAL INDEFINIDO"}
+        <Typography variant="subtitle1" sx={{ color: 'text.primary' }}>
+          {corretora.nome_social || 'NOME SOCIAL INDEFINIDO'}
         </Typography>
       </Box>
 
-      <Grid container spacing={2} sx={{ alignItems: "center" }}>
+      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
         <Grid size={{ xs: 12, md: 8 }}>
           <Typography
             variant="caption"
             color="text.primary"
-            sx={{ display: "block" }}
+            sx={{ display: 'block' }}
           >
             PATRIMÔNIO LÍQUIDO
           </Typography>
           <Typography
             variant="h4"
-            sx={{ fontWeight: "bold" }}
+            sx={{ fontWeight: 'bold' }}
             color="primary.main"
           >
             {formatarValorMoeda(
@@ -89,27 +93,27 @@ export function CardDetailsCorretora({ corretora }: Props) {
           <Typography
             variant="caption"
             color="text.primary"
-            sx={{ display: "block", mt: 0.5 }}
+            sx={{ display: 'block', mt: 0.5 }}
           >
-            DATA PATRIMÔNIO LÍQUIDO:{" "}
+            DATA PATRIMÔNIO LÍQUIDO:{' '}
             {formatarData(
-              new Date(corretora.data_patrimonio_liquido || "DATA INDEFINIDA"),
+              new Date(corretora.data_patrimonio_liquido || 'DATA INDEFINIDA'),
             )}
           </Typography>
         </Grid>
         <Grid
           size={{ xs: 12, md: 4 }}
-          sx={{ textAlign: { xs: "left", md: "right" } }}
+          sx={{ textAlign: { xs: 'left', md: 'right' } }}
         >
           <Typography
             variant="caption"
             color="text.primary"
-            sx={{ display: "block" }}
+            sx={{ display: 'block' }}
             gutterBottom
           >
             CÓDIGO CVM
           </Typography>
-          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
             {corretora.codigo_cvm}
           </Typography>
         </Grid>
@@ -121,18 +125,18 @@ export function CardDetailsCorretora({ corretora }: Props) {
 
           <RowValue
             label="CNPJ"
-            value={formatarCNPJ(corretora.cnpj) || "CNPJ INDEFINIDO"}
+            value={formatarCNPJ(corretora.cnpj) || 'CNPJ INDEFINIDO'}
           />
           <RowValue
             label="Data de Registro"
             value={formatarData(
-              new Date(corretora.data_registro || "DATA INDEFINIDA"),
+              new Date(corretora.data_registro || 'DATA INDEFINIDA'),
             )}
           />
           <RowValue
             label="Início da Situação"
             value={formatarData(
-              new Date(corretora.data_inicio_situacao || "DATA INDEFINIDA"),
+              new Date(corretora.data_inicio_situacao || 'DATA INDEFINIDA'),
             )}
           />
         </Grid>
@@ -141,17 +145,17 @@ export function CardDetailsCorretora({ corretora }: Props) {
           <SectionTitle title="Endereço" />
           <RowValue
             label="Logradouro"
-            value={`${corretora.logradouro}${corretora.complemento ? `, ${corretora.complemento}` : ""}`}
+            value={`${corretora.logradouro}${corretora.complemento ? `, ${corretora.complemento}` : ''}`}
           />
           <RowValue label="Bairro" value={corretora.bairro} />
           <RowValue
             label="Cidade / UF"
             value={`${corretora.municipio} - ${corretora.uf}`}
           />
-          <RowValue label="País" value={corretora.pais || "PAÍS INDEFINIDO"} />
+          <RowValue label="País" value={corretora.pais || 'PAÍS INDEFINIDO'} />
           <RowValue
             label="CEP"
-            value={formatarCep(corretora.cep) || "CEP INDEFINIDO"}
+            value={formatarCep(corretora.cep) || 'CEP INDEFINIDO'}
           />
         </Grid>
       </Grid>
@@ -162,14 +166,14 @@ export function CardDetailsCorretora({ corretora }: Props) {
           <Grid size={{ xs: 12, md: 6 }}>
             <RowValue
               label="E-mail"
-              value={corretora.email || "EMAIL INDEFINIDO"}
+              value={corretora.email || 'EMAIL INDEFINIDO'}
             />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
             <RowValue
               label="Telefone"
               value={
-                formatarTelefone(corretora.telefone) || "TELEFONE INDEFINIDO"
+                formatarTelefone(corretora.telefone) || 'TELEFONE INDEFINIDO'
               }
             />
           </Grid>

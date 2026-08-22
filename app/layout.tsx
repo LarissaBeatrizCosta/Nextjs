@@ -1,20 +1,21 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Providers } from "@/providers/provider";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ["latin"] });
+import { Providers } from '@/providers/provider';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "CVM — Corretoras",
-  description: "Consulta de instituições registradas na CVM",
+  title: 'CVM — Corretoras',
+  description: 'Consulta de instituições registradas na CVM',
 };
-
+/** Layout principal da aplicação.*/
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className} style={{ backgroundColor: "default" }}>
+      <body className={inter.className} style={{ backgroundColor: 'default' }}>
         <Providers>{children}</Providers>
       </body>
     </html>

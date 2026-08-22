@@ -1,14 +1,16 @@
-import { getCorretoraByCnpj } from "@/services/corretoras";
-import { notFound } from "next/navigation";
-import { Container, Box } from "@mui/material";
-import { CardDetailsCorretora } from "@/components/detailsCorretora";
-import { Corretora } from "@/types/corretora";
-import { BackButton } from "@/components/backButton";
+import { Container, Box } from '@mui/material';
+import { notFound } from 'next/navigation';
+
+import { BackButton } from '@/components/backButton';
+import { CardDetailsCorretora } from '@/components/detailsCorretora';
+import { getCorretoraByCnpj } from '@/services/corretoras';
+import { Corretora } from '@/types/corretora';
 
 interface Props {
   params: Promise<{ cnpj: string }>;
 }
 
+/** Página de detalhes de uma corretora. */
 export default async function CorretoraPage({ params }: Props) {
   const { cnpj } = await params;
 
@@ -19,7 +21,7 @@ export default async function CorretoraPage({ params }: Props) {
     notFound();
   }
 
-  if (!corretora) notFound();
+  if (!corretora) {notFound();}
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>

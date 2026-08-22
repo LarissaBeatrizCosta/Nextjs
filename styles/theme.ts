@@ -1,17 +1,18 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from '@mui/material';
 
+/** Tema personalizado para a aplicação, definindo cores, estilos e componentes do Material-UI */
 export const theme = createTheme({
   palette: {
-    mode: "light",
+    mode: 'light',
 
     background: {
-      default: "#FFEDF2",
+      default: '#FFEDF2',
     },
     text: {
-      primary: "#000826",
+      primary: '#000826',
     },
     primary: {
-      main: "#E80070",
+      main: '#E80070',
     },
   },
 
@@ -19,19 +20,19 @@ export const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundImage: "none",
-          backgroundColor: "#FFEDF2",
-          borderColor: "#E80070",
+          backgroundImage: 'none',
+          backgroundColor: '#FFEDF2',
+          borderColor: '#E80070',
         },
       },
     },
     MuiTextField: {
       styleOverrides: {
         root: {
-          "& .MuiOutlinedInput-root": {
-            backgroundColor: "#FFEDF2",
-            color: "#000826",
-            "& fieldset": { borderColor: "#000826" },
+          '& .MuiOutlinedInput-root': {
+            backgroundColor: '#FFEDF2',
+            color: '#000826',
+            '& fieldset': { borderColor: '#000826' },
           },
         },
       },
