@@ -12,7 +12,9 @@ export async function getCorretoras(): Promise<Corretora[]> {
 
     return corretorasLista;
   } catch (error) {
-    throw new Error(`Erro ao buscar lista de corretoras: ${  error}`);
+    throw new Error(`Erro ao buscar lista de corretoras - ${error}`, {
+      cause: error,
+    });
   }
 }
 
@@ -22,8 +24,8 @@ export async function getCorretoraByCnpj(cnpj: string): Promise<Corretora> {
     const { data } = await api.get<Corretora>(`/${cnpj}`);
     return data;
   } catch (error) {
-    throw new Error(
-      `Corretora não encontrada com o CNPJ: ${  cnpj  } - ${  error}`,
-    );
+    throw new Error(`Corretora não encontrada com o CNPJ: ${cnpj} - ${error}`, {
+      cause: error,
+    });
   }
 }
